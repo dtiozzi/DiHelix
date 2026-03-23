@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DiHelix | Research Peptides</title>
+  <meta name="description" content="DiHelix research peptide catalog. For research purposes only. Not for human consumption." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #080a0c;
+      --navy:       #0d1420;
+      --navy2:      #111c2a;
+      --navy3:      #162030;
+      --border:     rgba(255,255,255,0.06);
+      --border2:    rgba(255,106,26,0.3);
+      --orange:     #ff6a1a;
+      --orange-dim: rgba(255,106,26,0.12);
+      --orange2:    #ff8c40;
+      --slate:      #4a7090;
+      --slate-dim:  rgba(74,112,144,0.15);
+      --slate2:     #2e4a60;
+      --white:      #e8edf2;
+      --silver:     #8a9aaa;
+      --muted:      #3a5060;
+      --red:        #ff4455;
+      --grad:       linear-gradient(120deg, #ff6a1a, #ff8c40);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Exo 2', sans-serif;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--orange); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* GRID BG */
+    .grid-bg {
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,106,26,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,112,144,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* NAV */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(13,20,32,0.94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+    .brand-wordmark {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: 1.45rem; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .brand-wordmark .di {
+      background: linear-gradient(135deg, #fff, #8899aa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .brand-wordmark .helix {
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      color: #fff !important; background: var(--orange);
+      padding: 9px 20px;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: opacity 0.2s; font-weight: 600;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .menu-toggle {
+      display: none; background: none; border: 1px solid var(--border2);
+      color: var(--orange); padding: 6px 12px; font-size: 1rem; cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding-top: 68px; position: relative; overflow: hidden;
+    }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,106,26,0.1), transparent 70%);
+      top: -80px; right: -80px;
+    }
+    .orb-2 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(74,112,144,0.1), transparent 70%);
+      bottom: 0; left: -80px;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem; align-items: center;
+      position: relative; z-index: 2; padding: 5rem 0;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);
+      margin-bottom: 1.4rem; padding: 6px 14px;
+      border: 1px solid var(--border2); background: var(--orange-dim);
+    }
+    .eyebrow::before { content: '//'; opacity: 0.5; }
+    .hero-copy h1 {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: clamp(52px, 7vw, 96px); line-height: 0.95;
+      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero-copy h1 .line-silver {
+      display: block;
+      background: linear-gradient(135deg, #e8edf2, #6a8090);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-copy h1 .line-orange {
+      display: block; background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-text {
+      font-size: 0.95rem; line-height: 1.8; color: var(--slate);
+      max-width: 460px; margin-bottom: 2.5rem; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 30px;
+      text-decoration: none; transition: all 0.25s;
+      display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--orange); color: #fff; font-weight: 700;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    }
+    .btn-primary:hover { background: var(--orange2); }
+    .btn-secondary {
+      background: var(--slate-dim); color: var(--slate);
+      border: 1px solid rgba(74,112,144,0.3);
+    }
+    .btn-secondary:hover { background: rgba(74,112,144,0.25); color: var(--white); }
+
+    .trust-row { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .trust-row li {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .trust-row li::before {
+      content: ''; width: 4px; height: 4px; background: var(--orange);
+      display: inline-block; transform: rotate(45deg);
+    }
+
+    /* VIAL */
+    .hero-visual { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+    .vial-stage { position: relative; width: 220px; height: 300px; display: flex; align-items: center; justify-content: center; }
+    .vial-glow {
+      position: absolute; width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(255,106,26,0.15), transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%,100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%,-50%) scale(1.15); }
+    }
+    .mock-vial { animation: float 4s ease-in-out infinite; position: relative; z-index: 2; }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .vial-cap {
+      width: 80px; height: 28px;
+      background: linear-gradient(135deg, #2a2a2a, #111);
+      border-radius: 4px 4px 0 0; margin: 0 auto;
+      border: 1px solid #333; border-bottom: none; position: relative;
+    }
+    .vial-cap::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 5px; background: var(--orange);
+    }
+    .vial-body {
+      width: 80px; height: 180px;
+      background: linear-gradient(160deg, #131820, #0a0e14);
+      border: 1px solid rgba(255,255,255,0.06); border-top: none;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 4px;
+      position: relative; overflow: hidden; border-radius: 0 0 6px 6px;
+    }
+    .vial-body::before {
+      content: ''; position: absolute; left: 10px; top: 10%; bottom: 10%;
+      width: 4px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.04), transparent); border-radius: 2px;
+    }
+    .vial-body::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--orange);
+    }
+    .vial-wordmark { font-family: 'Rajdhani', sans-serif; font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .vial-wordmark .di { color: #aaa; }
+    .vial-wordmark .helix { color: var(--orange); }
+    .vial-product-name {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: 1.1rem; letter-spacing: 0.08em; color: var(--white); margin-top: 8px;
+    }
+    .vial-dose-label { font-family: 'Share Tech Mono', monospace; font-size: 0.42rem; letter-spacing: 0.15em; color: var(--orange); }
+    .vial-shadow-el {
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 10px;
+      background: radial-gradient(ellipse, rgba(255,106,26,0.2), transparent 70%);
+      animation: float-shadow 4s ease-in-out infinite;
+    }
+    @keyframes float-shadow {
+      0%,100% { opacity: 0.7; }
+      50% { opacity: 0.2; transform: translateX(-50%) scaleX(0.75); }
+    }
+    .notice-card {
+      background: rgba(255,68,85,0.04); border: 1px solid rgba(255,68,85,0.2);
+      border-left: 3px solid var(--red); padding: 1.2rem 1.5rem; max-width: 300px; width: 100%;
+    }
+    .notice-tag { font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+    .notice-card p { font-size: 0.75rem; line-height: 1.65; color: var(--muted); }
+
+    /* TICKER */
+    .ticker {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: rgba(8,10,12,0.6); overflow: hidden; white-space: nowrap; padding: 11px 0;
+      position: relative; z-index: 2;
+    }
+    .ticker-track { display: inline-flex; animation: ticker 30s linear infinite; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-item {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+      padding: 0 2.5rem; display: inline-flex; align-items: center; gap: 1.5rem;
+    }
+    .t-name { color: var(--silver); }
+    .t-price { color: var(--orange); }
+    .t-sep { color: #1a2535; }
+
+    /* SECTIONS */
+    .section { padding: 7rem 0; position: relative; z-index: 2; }
+    .section-alt {
+      background: rgba(8,10,12,0.5);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before { content: '//'; opacity: 0.4; }
+    .section-label.secondary { color: var(--slate); }
+    .section-label.secondary::before { opacity: 0.4; }
+
+    .section-title {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: clamp(40px, 5.5vw, 72px); line-height: 0.95;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      background: linear-gradient(135deg, #e8edf2 40%, #5a7080);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-copy p { font-size: 0.95rem; line-height: 1.85; color: var(--slate); font-weight: 300; margin-bottom: 1.5rem; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2.5rem; }
+    .stat-box { background: var(--navy2); padding: 1.8rem 1.5rem; position: relative; overflow: hidden; }
+    .stat-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--orange); }
+    .stat-num {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 3.2rem;
+      letter-spacing: 0.04em; line-height: 1; background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.4rem;
+    }
+    .stat-desc { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+    .brand-showcase {
+      background: var(--navy2); border: 1px solid var(--border);
+      padding: 3.5rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .brand-showcase::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--orange); }
+    .showcase-logo { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .helix-large { width: 80px; height: 80px; }
+    .showcase-wordmark { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 2.4rem; letter-spacing: 0.14em; text-transform: uppercase; }
+    .showcase-wordmark .di { background: linear-gradient(135deg, #fff, #8899aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .showcase-wordmark .helix { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .showcase-tagline { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .glow-line { position: absolute; height: 1px; background: linear-gradient(90deg, transparent, var(--orange), transparent); opacity: 0.2; left: 0; right: 0; }
+    .glow-line-top { top: 38%; }
+    .glow-line-bot { top: 62%; }
+
+    /* PRODUCTS */
+    .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+    .product-count { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+    .product-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .product-card {
+      background: var(--navy); padding: 2.5rem; position: relative;
+      overflow: hidden; transition: background 0.3s; display: flex; flex-direction: column; cursor: pointer;
+    }
+    .product-card:hover { background: var(--navy3); }
+    .product-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+    }
+    .product-card:hover::before { transform: scaleX(1); }
+    .product-card::after {
+      content: ''; position: absolute; bottom: 0; right: 0;
+      width: 0; height: 0; border-style: solid;
+      border-width: 0 0 28px 28px; border-color: transparent transparent var(--navy) transparent;
+    }
+    .product-sku {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--slate2); margin-bottom: 1.5rem; transition: color 0.3s;
+    }
+    .product-card:hover .product-sku { color: var(--orange); }
+    .product-card h3 {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 2.8rem;
+      letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, #e8edf2, #6a8090);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase;
+    }
+    /* secondary slate tag on each card */
+    .product-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.58rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--slate); background: var(--slate-dim);
+      border: 1px solid rgba(74,112,144,0.2);
+      padding: 3px 10px; margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .product-desc { font-family: 'Exo 2', sans-serif; font-size: 0.8rem; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 2rem; flex: 1; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .product-price {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 2.2rem;
+      letter-spacing: 0.04em; background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .product-link {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate);
+      text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s, gap 0.2s;
+    }
+    .product-link:hover { color: var(--orange); gap: 10px; }
+    .product-link::after { content: '→'; }
+    .card-ghost {
+      position: absolute; bottom: -8px; right: 8px;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 72px;
+      letter-spacing: 0.05em; text-transform: uppercase; color: transparent;
+      -webkit-text-stroke: 1px rgba(255,106,26,0.05); pointer-events: none; transition: -webkit-text-stroke 0.3s;
+    }
+    .product-card:hover .card-ghost { -webkit-text-stroke: 1px rgba(255,106,26,0.1); }
+
+    /* COMPLIANCE */
+    .compliance-box {
+      border: 1px solid rgba(255,68,85,0.18); border-left: 3px solid var(--red);
+      background: rgba(255,68,85,0.03); padding: 3rem; max-width: 820px;
+    }
+    .compliance-box .section-label { color: var(--red); }
+    .compliance-box .section-label::before { content: '⚠'; opacity: 1; }
+    .compliance-box p { font-size: 0.92rem; line-height: 1.85; color: var(--muted); font-weight: 300; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .contact-info p { font-size: 0.9rem; line-height: 1.85; color: var(--slate); font-weight: 300; margin-top: 1.5rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .form-field { background: var(--navy2); display: flex; flex-direction: column; transition: background 0.2s; }
+    .form-field:focus-within { background: var(--navy3); outline: 1px solid var(--border2); }
+    .form-field label { font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding: 1rem 1.5rem 0; }
+    .form-field input, .form-field textarea { background: transparent; border: none; outline: none; color: var(--white); font-family: 'Exo 2', sans-serif; font-size: 0.9rem; font-weight: 300; padding: 0.4rem 1.5rem 1rem; resize: none; width: 100%; }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: #1e2d3a; }
+    .form-submit { background: var(--navy2); padding: 1.5rem; }
+    .btn-full { width: 100%; justify-content: center; }
+
+    /* FOOTER */
+    .site-footer { border-top: 1px solid var(--border); padding: 2.5rem 0; position: relative; z-index: 2; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-copy { font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em; color: var(--slate2); text-align: right; line-height: 1.7; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: rgba(13,20,32,0.98); border-bottom: 1px solid var(--border); padding: 2rem; gap: 1.5rem; z-index: 199; }
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-visual { order: -1; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .product-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .products-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-copy { text-align: left; }
+    }
+
+    /* FADE IN */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<header class="site-header">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="navLg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ff6a1a"/><stop offset="100%" stop-color="#ff8c40"/>
+          </linearGradient>
+        </defs>
+        <path d="M10 4 L18 14 L10 24 L18 34" stroke="#6a8090" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M30 4 L22 14 L30 24 L22 34" stroke="url(#navLg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="18" y1="14" x2="22" y2="14" stroke="#ff6a1a" stroke-width="1.5" opacity="0.8"/>
+        <line x1="10" y1="24" x2="30" y2="24" stroke="#6a8090" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="20" cy="19" r="2.5" fill="url(#navLg)"/>
+      </svg>
+      <span class="brand-wordmark"><span class="di">DI</span><span class="helix">HELIX</span></span>
+    </a>
+    <button class="menu-toggle" id="menuBtn">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#products">Catalog</a>
+      <a href="#compliance">Research Use</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#products">View Catalog</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Research Peptide Catalog</div>
+        <h1>
+          <span class="line-silver">Precision</span>
+          <span class="line-silver">Peptides.</span>
+          <span class="line-orange">Maximum Value.</span>
+        </h1>
+        <p class="hero-text">DiHelix is a precision-engineered research catalog built around clean product hierarchy and a no-nonsense experience. All materials are for laboratory and analytical use only.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">View Catalog</a>
+          <a class="btn btn-secondary" href="#compliance">Research Use Notice</a>
+        </div>
+        <ul class="trust-row">
+          <li>Lab-grade catalog</li>
+          <li>Clean SKU structure</li>
+          <li>Research use only</li>
+        </ul>
+      </div>
+      <div class="hero-visual">
+        <div class="vial-stage">
+          <div class="vial-glow"></div>
+          <div class="mock-vial">
+            <div class="vial-cap"></div>
+            <div class="vial-body">
+              <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+                <path d="M10 4 L18 14 L10 24 L18 34" stroke="#6a8090" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <path d="M30 4 L22 14 L30 24 L22 34" stroke="#ff6a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <line x1="18" y1="14" x2="22" y2="14" stroke="#ff6a1a" stroke-width="1.5" opacity="0.8"/>
+                <line x1="10" y1="24" x2="30" y2="24" stroke="#6a8090" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="20" cy="19" r="2.5" fill="#ff6a1a"/>
+              </svg>
+              <div class="vial-wordmark"><span class="di">DI</span><span class="helix">HELIX</span></div>
+              <div class="vial-product-name">GHK-CU</div>
+              <div class="vial-dose-label">100MG</div>
+            </div>
+          </div>
+          <div class="vial-shadow-el"></div>
+        </div>
+        <div class="notice-card">
+          <p class="notice-tag">⚠ Research Use Notice</p>
+          <p>Not for human consumption. Not intended to diagnose, treat, cure, or prevent any disease. For lawful laboratory use only.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="t-name">GHK-CU</span><span class="t-sep">|</span><span class="t-price">100MG — $50</span></span>
+      <span class="ticker-item"><span class="t-name">Retatrutide</span><span class="t-sep">|</span><span class="t-price">30MG — $125</span></span>
+      <span class="ticker-item"><span class="t-name">Semaglutide</span><span class="t-sep">|</span><span class="t-price">15MG — $55</span></span>
+      <span class="ticker-item"><span class="t-name">TB-500 / BPC-157</span><span class="t-sep">|</span><span class="t-price">10/10MG — $50</span></span>
+      <span class="ticker-item" style="color:#1a2535;letter-spacing:0.2em;">◆ RESEARCH USE ONLY ◆</span>
+      <span class="ticker-item"><span class="t-name">GHK-CU</span><span class="t-sep">|</span><span class="t-price">100MG — $50</span></span>
+      <span class="ticker-item"><span class="t-name">Retatrutide</span><span class="t-sep">|</span><span class="t-price">30MG — $125</span></span>
+      <span class="ticker-item"><span class="t-name">Semaglutide</span><span class="t-sep">|</span><span class="t-price">15MG — $55</span></span>
+      <span class="ticker-item"><span class="t-name">TB-500 / BPC-157</span><span class="t-sep">|</span><span class="t-price">10/10MG — $50</span></span>
+      <span class="ticker-item" style="color:#1a2535;letter-spacing:0.2em;">◆ RESEARCH USE ONLY ◆</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="section section-alt">
+    <div class="container about-grid">
+      <div class="about-copy fade-in">
+        <p class="section-label">About DiHelix</p>
+        <h2 class="section-title">Built for<br>the Lab.</h2>
+        <br>
+        <p>DiHelix is a modern research catalog designed around clarity. Clean product layouts, a no-nonsense SKU structure, and a precision-first experience for serious researchers.</p>
+        <p>Every item is presented with full compliance language and transparent specifications. No fluff — just the information you need.</p>
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-num">4</div><div class="stat-desc">Catalog Items</div></div>
+          <div class="stat-box"><div class="stat-num">100%</div><div class="stat-desc">Research Use</div></div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="brand-showcase">
+          <div class="glow-line glow-line-top"></div>
+          <div class="glow-line glow-line-bot"></div>
+          <div class="showcase-logo">
+            <svg class="helix-large" viewBox="0 0 40 40" fill="none">
+              <defs>
+                <linearGradient id="showLg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ff6a1a"/><stop offset="100%" stop-color="#ff8c40"/>
+                </linearGradient>
+              </defs>
+              <path d="M10 4 L18 14 L10 24 L18 34" stroke="#6a8090" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path d="M30 4 L22 14 L30 24 L22 34" stroke="url(#showLg)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <line x1="18" y1="14" x2="22" y2="14" stroke="#ff6a1a" stroke-width="1.5" opacity="0.8"/>
+              <line x1="10" y1="24" x2="30" y2="24" stroke="#6a8090" stroke-width="1.5" opacity="0.6"/>
+              <circle cx="20" cy="19" r="2.5" fill="url(#showLg)"/>
+            </svg>
+            <div class="showcase-wordmark"><span class="di">DI</span><span class="helix">HELIX</span></div>
+          </div>
+          <p class="showcase-tagline">Precision Peptides. Maximum Value.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="section">
+    <div class="container">
+      <div class="products-header fade-in">
+        <div>
+          <p class="section-label">Product Catalog</p>
+          <h2 class="section-title">Current<br>Research Items.</h2>
+        </div>
+        <p class="product-count">// 04 Items Listed</p>
+      </div>
+      <div class="product-grid">
+
+        <article class="product-card fade-in">
+          <p class="product-sku">SKU — DH-001</p>
+          <h3>GHK-CU</h3>
+          <span class="product-tag">Copper Peptide</span>
+          <p class="product-desc">100 mg lyophilized powder. For in-vitro laboratory research purposes only.</p>
+          <div class="product-footer">
+            <span class="product-price">$50</span>
+            <a class="product-link" href="ghk-cu.html">Open page</a>
+          </div>
+          <span class="card-ghost">GHK</span>
+        </article>
+
+        <article class="product-card fade-in">
+          <p class="product-sku">SKU — DH-002</p>
+          <h3>Retatrutide</h3>
+          <span class="product-tag">Triple Agonist</span>
+          <p class="product-desc">30 mg lyophilized powder. For in-vitro laboratory research purposes only.</p>
+          <div class="product-footer">
+            <span class="product-price">$125</span>
+            <a class="product-link" href="retatrutide.html">Open page</a>
+          </div>
+          <span class="card-ghost">RET</span>
+        </article>
+
+        <article class="product-card fade-in">
+          <p class="product-sku">SKU — DH-003</p>
+          <h3>Semaglutide</h3>
+          <span class="product-tag">GLP-1 Agonist</span>
+          <p class="product-desc">15 mg lyophilized powder. For in-vitro laboratory research purposes only.</p>
+          <div class="product-footer">
+            <span class="product-price">$55</span>
+            <a class="product-link" href="semaglutide.html">Open page</a>
+          </div>
+          <span class="card-ghost">SEM</span>
+        </article>
+
+        <article class="product-card fade-in">
+          <p class="product-sku">SKU — DH-004</p>
+          <h3>TB-500 / BPC-157</h3>
+          <span class="product-tag">Blended Formula</span>
+          <p class="product-desc">10 mg / 10 mg lyophilized powder. For in-vitro laboratory research purposes only.</p>
+          <div class="product-footer">
+            <span class="product-price">$50</span>
+            <a class="product-link" href="tb500-bpc157.html">Open page</a>
+          </div>
+          <span class="card-ghost">TB</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE -->
+  <section id="compliance" class="section section-alt">
+    <div class="container">
+      <div class="compliance-box fade-in">
+        <p class="section-label">Research Use Notice</p>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">Important<br>Statement.</h2>
+        <p>All products listed on this website are for research purposes only and are not for human consumption. They are not intended to diagnose, treat, cure, or prevent any disease. Keep this notice visible on every page — including product pages and the footer — throughout the site.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container contact-grid">
+      <div class="contact-info fade-in">
+        <p class="section-label secondary">Contact</p>
+        <h2 class="section-title">Let's<br>Connect.</h2>
+        <p>Have a research inquiry? Fill out the form and we'll get back to you. Expand with FAQs, shipping info, or additional pages as your catalog grows.</p>
+      </div>
+      <div class="fade-in">
+        <div class="contact-form">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" />
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Your research inquiry"></textarea>
+          </div>
+          <div class="form-submit">
+            <button class="btn btn-primary btn-full" type="button">Send Inquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="brand" href="index.html">
+      <svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none">
+        <path d="M10 4 L18 14 L10 24 L18 34" stroke="#6a8090" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M30 4 L22 14 L30 24 L22 34" stroke="#ff6a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <line x1="18" y1="14" x2="22" y2="14" stroke="#ff6a1a" stroke-width="1.5" opacity="0.8"/>
+        <line x1="10" y1="24" x2="30" y2="24" stroke="#6a8090" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="20" cy="19" r="2.5" fill="#ff6a1a"/>
+      </svg>
+      <span class="brand-wordmark"><span class="di">DI</span><span class="helix">HELIX</span></span>
+    </a>
+    <nav class="footer-links">
+      <a href="#about">About</a>
+      <a href="#products">Catalog</a>
+      <a href="#compliance">Research Use</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p class="footer-copy">© 2026 DiHelix. For research purposes only.<br>Not for human consumption.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
