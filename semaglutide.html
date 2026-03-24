@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Semaglutide | DiHelix</title><meta name="description" content="Semaglutide research overview and inquiry page for DiHelix." /><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet"><style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:#080a0c; --navy:#0d1420; --navy2:#111c2a; --navy3:#162030;
+      --border:rgba(255,255,255,0.06); --border2:rgba(255,106,26,0.3);
+      --orange:#ff6a1a; --orange-dim:rgba(255,106,26,0.12); --orange2:#ff8c40;
+      --white:#e8edf2; --silver:#c6d0da; --muted:#b7c1cb; --red:#ff4455;
+      --grad:linear-gradient(120deg,#ff6a1a,#ff8c40);
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--navy); color:var(--white); font-family:'Exo 2',sans-serif; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-track { background:var(--navy); } ::-webkit-scrollbar-thumb { background:var(--orange); }
+    .container { max-width:1200px; margin:0 auto; padding:0 2rem; }
+    .grid-bg { position:fixed; inset:0; background-image:linear-gradient(rgba(255,106,26,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
+    .ambient-lines { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .ambient-lines::before,.ambient-lines::after { content:""; position:absolute; inset:-20%; background:linear-gradient(90deg, transparent 0%, rgba(255,106,26,0.04) 48%, rgba(255,106,26,0.1) 50%, rgba(255,106,26,0.04) 52%, transparent 100%); animation:sweep 16s linear infinite; }
+    .ambient-lines::after { animation-duration:22s; animation-direction:reverse; opacity:.45; }
+    @keyframes sweep { 0%{transform:translateX(-18%);} 100%{transform:translateX(18%);} }
+    .watermark-logo { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; z-index:1; opacity:.035; }
+    .watermark-logo svg { width:min(62vw,620px); height:auto; filter:drop-shadow(0 0 20px rgba(255,106,26,0.08)); animation:watermarkFloat 8s ease-in-out infinite; }
+    @keyframes watermarkFloat { 0%,100%{transform:translateY(0px) scale(1);} 50%{transform:translateY(-10px) scale(1.02);} }
+    .site-header { position:fixed; top:0; left:0; right:0; z-index:200; background:rgba(13,20,32,0.94); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .brand-logo-svg { width:36px; height:36px; flex-shrink:0; }
+    .brand-wordmark { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.45rem; letter-spacing:.12em; text-transform:uppercase; }
+    .brand-wordmark .di { background:linear-gradient(135deg,#fff,#8899aa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .brand-wordmark .helix { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .nav-links { display:flex; align-items:center; gap:2.5rem; }
+    .nav-links a { font-family:'Share Tech Mono',monospace; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .nav-links a:hover { color:var(--orange); }
+    .nav-cta { color:#fff !important; background:var(--orange); padding:9px 20px; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); transition:opacity .2s; font-weight:600; }
+    .nav-cta:hover { opacity:.85; }
+    .menu-toggle { display:none; background:none; border:1px solid var(--border2); color:var(--orange); padding:6px 12px; font-size:1rem; cursor:pointer; }
+    .hero { min-height:92vh; display:flex; align-items:center; padding-top:68px; position:relative; overflow:hidden; }
+    .orb { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; }
+    .orb-1 { width:500px; height:500px; background:radial-gradient(circle, rgba(255,106,26,0.1), transparent 70%); top:-80px; right:-80px; }
+    .orb-2 { width:380px; height:380px; background:radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%); bottom:0; left:-80px; }
+    .hero-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:4rem; align-items:center; position:relative; z-index:2; padding:5rem 0; }
+    .eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:'Share Tech Mono',monospace; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--orange); margin-bottom:1.4rem; padding:6px 14px; border:1px solid var(--border2); background:var(--orange-dim); }
+    .eyebrow::before { content:'//'; opacity:.5; }
+    .hero-copy h1 { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:clamp(52px,7vw,96px); line-height:.95; letter-spacing:.04em; text-transform:uppercase; margin-bottom:1rem; }
+    .hero-copy h1 .line-silver { display:block; background:linear-gradient(135deg,#e8edf2,#a8b4c0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero-copy h1 .line-orange { display:block; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero-price { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:2.2rem; letter-spacing:.04em; color:var(--orange); margin-bottom:1rem; }
+    .hero-text { font-size:.98rem; line-height:1.8; color:var(--white); max-width:520px; margin-bottom:2rem; font-weight:300; }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .btn { font-family:'Share Tech Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; padding:14px 30px; text-decoration:none; transition:all .25s; display:inline-flex; align-items:center; gap:8px; cursor:pointer; border:none; }
+    .btn-primary { background:var(--orange); color:#fff; font-weight:700; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); }
+    .btn-primary:hover { background:var(--orange2); }
+    .btn-secondary { background:rgba(255,255,255,0.04); color:var(--white); border:1px solid rgba(255,255,255,0.08); }
+    .btn-secondary:hover { background:rgba(255,255,255,0.08); }
+    .spec-card { background:rgba(17,28,42,0.95); border:1px solid var(--border); padding:2rem; position:relative; overflow:hidden; }
+    .spec-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--orange); }
+    .section-label { font-family:'Share Tech Mono',monospace; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--orange); margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+    .section-label::before { content:'//'; opacity:.4; }
+    .section-label.secondary { color:var(--white); }
+    .section-title { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:clamp(40px,5.5vw,72px); line-height:.95; letter-spacing:.04em; text-transform:uppercase; background:linear-gradient(135deg,#e8edf2 40%,#a8b4c0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:1.5rem; }
+    .spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); margin-top:1.5rem; }
+    .spec-item { background:var(--navy2); padding:1.2rem; }
+    .spec-label { font-family:'Share Tech Mono',monospace; font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:.45rem; }
+    .spec-value { font-family:'Rajdhani',sans-serif; font-size:1.5rem; letter-spacing:.04em; text-transform:uppercase; color:var(--white); }
+    .section { padding:7rem 0; position:relative; z-index:2; }
+    .section-alt { background:rgba(8,10,12,0.5); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .content-grid,.contact-grid,.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+    .copy-block p,.about-copy p,.contact-info p,.info-panel p,.compliance-box p { font-size:.95rem; line-height:1.85; color:var(--white); font-weight:300; margin-bottom:1.2rem; }
+    .feature-list { list-style:none; display:grid; gap:1rem; margin-top:1.5rem; }
+    .feature-list li { background:var(--navy2); border:1px solid var(--border); padding:1rem 1.2rem; color:var(--white); font-size:.92rem; line-height:1.7; }
+    .feature-list li strong { display:block; margin-bottom:.35rem; color:var(--orange); font-family:'Share Tech Mono',monospace; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; }
+    .info-panel,.brand-showcase { background:var(--navy2); border:1px solid var(--border); padding:2rem; }
+    .info-panel h3 { font-family:'Rajdhani',sans-serif; font-size:2rem; letter-spacing:.04em; text-transform:uppercase; margin-bottom:1rem; color:var(--white); }
+    .stat-row { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2rem; }
+    .stat-box { background:var(--navy2); padding:1.8rem 1.5rem; position:relative; overflow:hidden; }
+    .stat-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--orange); }
+    .stat-num { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:3.2rem; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:.4rem; }
+    .stat-desc { font-family:'Share Tech Mono',monospace; font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+    .showcase-logo { display:flex; flex-direction:column; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+    .helix-large { width:80px; height:80px; }
+    .showcase-wordmark { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:2.4rem; letter-spacing:.14em; text-transform:uppercase; }
+    .showcase-wordmark .di { background:linear-gradient(135deg,#fff,#8899aa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .showcase-wordmark .helix { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .showcase-tagline { font-family:'Share Tech Mono',monospace; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--white); }
+    .products-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+    .product-count { font-family:'Share Tech Mono',monospace; font-size:.65rem; letter-spacing:.12em; color:var(--muted); text-transform:uppercase; }
+    .product-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+    .product-card { background:var(--navy); padding:2.5rem; position:relative; overflow:hidden; transition:background .3s; display:flex; flex-direction:column; }
+    .product-card:hover { background:var(--navy3); }
+    .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--orange); transform:scaleX(0); transform-origin:left; transition:transform .4s ease; }
+    .product-card:hover::before { transform:scaleX(1); }
+    .product-sku { font-family:'Share Tech Mono',monospace; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:1.2rem; }
+    .product-card h3 { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:2.8rem; line-height:1; margin-bottom:.7rem; background:linear-gradient(135deg,#e8edf2,#a8b4c0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; }
+    .product-tag { display:inline-flex; align-items:center; gap:6px; font-family:'Share Tech Mono',monospace; font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; color:var(--white); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:3px 10px; margin-bottom:1rem; width:fit-content; }
+    .product-desc { font-size:.9rem; color:var(--white); line-height:1.7; font-weight:300; margin-bottom:1.5rem; flex:1; }
+    .product-footer { display:flex; align-items:center; justify-content:space-between; padding-top:1.5rem; border-top:1px solid var(--border); }
+    .product-price { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:2rem; letter-spacing:.04em; color:var(--orange); }
+    .product-link { font-family:'Share Tech Mono',monospace; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--white); text-decoration:none; display:flex; align-items:center; gap:6px; transition:color .2s, gap .2s; }
+    .product-link:hover { color:var(--orange); gap:10px; }
+    .product-link::after { content:'→'; }
+    .compliance-box { border:1px solid rgba(255,68,85,0.18); border-left:3px solid var(--red); background:rgba(255,68,85,0.03); padding:3rem; max-width:900px; }
+    .compliance-box .section-label { color:var(--red); } .compliance-box .section-label::before { content:'⚠'; opacity:1; }
+    .contact-form { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); }
+    .form-field { background:var(--navy2); display:flex; flex-direction:column; transition:background .2s; }
+    .form-field:focus-within { background:var(--navy3); outline:1px solid var(--border2); }
+    .form-field label { font-family:'Share Tech Mono',monospace; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); padding:1rem 1.5rem 0; }
+    .form-field input,.form-field textarea { background:transparent; border:none; outline:none; color:var(--white); font-family:'Exo 2',sans-serif; font-size:.95rem; font-weight:300; padding:.4rem 1.5rem 1rem; resize:none; width:100%; }
+    .form-field input::placeholder,.form-field textarea::placeholder { color:rgba(255,255,255,0.35); }
+    .form-submit { background:var(--navy2); padding:1.5rem; }
+    .btn-full { width:100%; justify-content:center; }
+    .site-footer { border-top:1px solid var(--border); padding:2.5rem 0; position:relative; z-index:2; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; }
+    .footer-links { display:flex; gap:2rem; }
+    .footer-links a { font-family:'Share Tech Mono',monospace; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+    .footer-links a:hover { color:var(--orange); }
+    .footer-copy { font-family:'Share Tech Mono',monospace; font-size:.58rem; letter-spacing:.08em; color:var(--muted); text-align:right; line-height:1.7; }
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .menu-toggle { display:block; }
+      .nav-links.open { display:flex; flex-direction:column; position:fixed; top:68px; left:0; right:0; background:rgba(13,20,32,0.98); border-bottom:1px solid var(--border); padding:2rem; gap:1.5rem; z-index:199; }
+      .hero-grid,.content-grid,.contact-grid,.about-grid { grid-template-columns:1fr; gap:3rem; }
+      .product-grid,.spec-grid { grid-template-columns:1fr; }
+      .products-header { flex-direction:column; align-items:flex-start; gap:.6rem; }
+      .footer-inner { flex-direction:column; align-items:flex-start; }
+      .footer-copy { text-align:left; }
+    }
+    .fade-in { opacity:0; transform:translateY(20px); transition:opacity .8s ease, transform .8s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+</style></head><body>
+<div class="grid-bg"></div>
+<div class="ambient-lines"></div>
+<div class="watermark-logo" aria-hidden="true">
+  <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M55 24 L95 74 L55 124 L95 174" stroke="#6a8090" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M145 24 L105 74 L145 124 L105 174" stroke="#ff8c40" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="95" y1="74" x2="105" y2="74" stroke="#ff6a1a" stroke-width="6" opacity="0.9"/>
+    <line x1="55" y1="124" x2="145" y2="124" stroke="#6a8090" stroke-width="6" opacity="0.75"/>
+    <circle cx="100" cy="98" r="12" fill="#ff6a1a"/>
+  </svg>
+</div>
+<header class="site-header"><div class="container nav-inner"><a class="brand" href="index.html"><svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="navLg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff6a1a"/><stop offset="100%" stop-color="#ff8c40"/></linearGradient></defs><path d="M10 4 L18 14 L10 24 L18 34" stroke="#6a8090" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M30 4 L22 14 L30 24 L22 34" stroke="url(#navLg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="18" y1="14" x2="22" y2="14" stroke="#ff6a1a" stroke-width="1.5" opacity="0.8"/><line x1="10" y1="24" x2="30" y2="24" stroke="#6a8090" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="19" r="2.5" fill="url(#navLg)"/></svg><span class="brand-wordmark"><span class="di">DI</span><span class="helix">HELIX</span></span></a><button class="menu-toggle" id="menuBtn">☰</button><nav class="nav-links" id="navLinks"><a href="index.html#about">About</a><a href="index.html#products">Catalog</a><a href="#details">Details</a><a href="#contact">Contact</a><a class="nav-cta" href="index.html#products">Back to Catalog</a></nav></div></header><main><section class="hero"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="container hero-grid"><div class="hero-copy fade-in"><div class="eyebrow">GLP-1 Research Page</div><h1><span class="line-silver">GLP-1</span><span class="line-silver">Metabolic</span><span class="line-orange">Focus.</span></h1><div class="hero-price">$55</div><p class="hero-text">Semaglutide is commonly discussed in research settings as a GLP-1 receptor agonist relevant to metabolic and appetite-related study models. This page is structured to match your main site while giving visitors a cleaner explanation of what the compound is generally studied for.</p><div class="hero-actions"><a class="btn btn-primary" href="#details">View Details</a><a class="btn btn-secondary" href="#contact">Inquiry Form</a></div></div><div class="spec-card fade-in"><p class="section-label">Product Snapshot</p><h2 class="section-title" style="font-size:clamp(34px,4vw,54px);">Semaglutide</h2><p class="hero-text" style="margin-bottom:1.25rem;max-width:none;">15 mg lyophilized powder listed as a GLP-1 agonist catalog item for laboratory and analytical use only.</p><div class="spec-grid"><div class="spec-item"><div class="spec-label">SKU</div><div class="spec-value">DH-003</div></div><div class="spec-item"><div class="spec-label">Format</div><div class="spec-value">Lyophilized</div></div><div class="spec-item"><div class="spec-label">Listed Size</div><div class="spec-value">15 MG</div></div><div class="spec-item"><div class="spec-label">Category</div><div class="spec-value">GLP-1 Agonist</div></div></div></div></div></section><section id="details" class="section section-alt"><div class="container content-grid"><div class="copy-block fade-in"><p class="section-label">Research Overview</p><h2 class="section-title">Why it gets attention.</h2><p>Semaglutide is widely recognized in research summaries as a GLP-1 receptor agonist that is often used as a reference point in metabolic and appetite-regulation discussions. In laboratory-oriented language, it is commonly associated with signaling pathways involved in satiety, glucose response, and body-weight models.</p><p>Researchers often compare semaglutide to other compounds when exploring receptor selectivity, dosing frameworks in non-clinical settings, and relative pathway behavior. Because the name is familiar to many visitors, the surrounding page design and wording should remain especially clear and compliance-forward.</p><p>For your catalog, describing semaglutide as a GLP-1 research peptide connected to appetite and metabolic pathway investigation keeps the message informative while staying within a safer high-level product-page style.</p></div><div class="fade-in"><div class="info-panel"><h3>Common Research Focus</h3><ul class="feature-list"><li><strong>Pathways</strong>GLP-1 receptor activity and satiety-related signaling are the most common summary topics.</li><li><strong>Applications</strong>Research overviews frequently mention metabolic markers, appetite studies, and comparative signaling analysis.</li><li><strong>Handling</strong>Pair the product page with visible pricing and consistent research-use language throughout the site.</li><li><strong>Site Note</strong>A direct inquiry form helps visitors ask product questions without needing to message you elsewhere.</li></ul></div></div></div></section><section class="section"><div class="container"><div class="compliance-box fade-in"><p class="section-label">Research Use Notice</p><h2 class="section-title" style="margin-bottom:1.5rem;">Important<br>Statement.</h2><p>All content on this product page is presented for laboratory, analytical, and educational reference only. This material is not for human consumption and is not intended to diagnose, treat, cure, or prevent any disease. Keep all compliance language visible on product pages, inquiry forms, and site navigation.</p></div></div></section><section id="contact" class="section"><div class="container contact-grid"><div class="contact-info fade-in"><p class="section-label secondary">Product Inquiry</p><h2 class="section-title">Request<br>More Info.</h2><p>This inquiry form is pre-labeled for <strong>Semaglutide</strong>. The product name is included in the email subject and hidden form field, and the message box starts with an “Inquiry about Semaglutide” prompt.</p></div><div class="fade-in"><form class="contact-form" action="https://formsubmit.co/d.t.iozzi@gmail.com" method="POST"><input type="hidden" name="_subject" value="Inquiry about Semaglutide | DiHelix"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://dtiozzi.github.io/DiHelix/thanks.html"><input type="hidden" name="_captcha" value="true"><input type="hidden" name="product" value="Semaglutide"><input type="text" name="_honey" style="display:none"><div class="form-field"><label for="name">Name</label><input type="text" id="name" name="name" placeholder="Your name" required /></div><div class="form-field"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@example.com" required /></div><div class="form-field"><label for="message">Message</label><textarea id="message" name="message" rows="6" required>Inquiry about Semaglutide:</textarea></div><div class="form-submit"><button class="btn btn-primary btn-full" type="submit">Send Inquiry</button></div></form></div></div></section></main><footer class="site-footer"><div class="container footer-inner"><a class="brand" href="index.html"><svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none"><path d="M10 4 L18 14 L10 24 L18 34" stroke="#6a8090" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M30 4 L22 14 L30 24 L22 34" stroke="#ff6a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/><line x1="18" y1="14" x2="22" y2="14" stroke="#ff6a1a" stroke-width="1.5" opacity="0.8"/><line x1="10" y1="24" x2="30" y2="24" stroke="#6a8090" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="19" r="2.5" fill="#ff6a1a"/></svg><span class="brand-wordmark"><span class="di">DI</span><span class="helix">HELIX</span></span></a><nav class="footer-links"><a href="index.html#about">About</a><a href="index.html#products">Catalog</a><a href="#details">Details</a><a href="#contact">Contact</a></nav><p class="footer-copy">© 2026 DiHelix. For research purposes only.<br>Not for human consumption.</p></div></footer><script>document.getElementById('menuBtn').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));</script></body></html>

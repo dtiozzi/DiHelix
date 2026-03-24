@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | DiHelix</title>
+  <meta name="description" content="Thank you for contacting DiHelix." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0d1420; --navy2:#111c2a; --border:rgba(255,255,255,0.06); --border2:rgba(255,106,26,0.3); --orange:#ff6a1a; --orange-dim:rgba(255,106,26,0.12); --orange2:#ff8c40; --white:#e8edf2; --grad:linear-gradient(120deg,#ff6a1a,#ff8c40); }
+    body { min-height:100vh; background:var(--navy); color:var(--white); font-family:'Exo 2',sans-serif; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; }
+    .grid-bg { position:fixed; inset:0; background-image:linear-gradient(rgba(255,106,26,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
+    .ambient-lines,.watermark-logo{position:fixed; inset:0; pointer-events:none;}
+    .ambient-lines::before,.ambient-lines::after{content:""; position:absolute; inset:-20%; background:linear-gradient(90deg, transparent 0%, rgba(255,106,26,0.04) 48%, rgba(255,106,26,0.1) 50%, rgba(255,106,26,0.04) 52%, transparent 100%); animation:sweep 16s linear infinite;}
+    .ambient-lines::after{animation-direction:reverse; opacity:.45; animation-duration:22s;}
+    @keyframes sweep {0%{transform:translateX(-18%);}100%{transform:translateX(18%);}}
+    .watermark-logo{display:flex; align-items:center; justify-content:center; opacity:.035; z-index:1;}
+    .watermark-logo svg{width:min(62vw,620px); height:auto; animation:float 8s ease-in-out infinite;}
+    @keyframes float{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-10px) scale(1.02);}}
+    .card{position:relative; z-index:2; width:min(760px, calc(100vw - 32px)); background:rgba(17,28,42,0.94); border:1px solid var(--border); padding:3rem;}
+    .card::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad);}
+    .eyebrow{display:inline-flex; align-items:center; gap:10px; padding:6px 14px; border:1px solid var(--border2); background:var(--orange-dim); font-family:'Share Tech Mono',monospace; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:1.2rem;}
+    .eyebrow::before{content:"//"; opacity:.55;}
+    h1{font-family:'Rajdhani',sans-serif; font-size:clamp(42px,7vw,74px); line-height:.95; text-transform:uppercase; letter-spacing:.04em; margin-bottom:1rem; background:linear-gradient(135deg,#e8edf2 40%,#8797a8); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+    p{color:var(--white); line-height:1.8; font-size:1rem; margin-bottom:1.8rem;}
+    .actions{display:flex; gap:1rem; flex-wrap:wrap;}
+    .btn{font-family:'Share Tech Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; padding:14px 28px; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;}
+    .btn-primary{background:var(--orange); color:#fff; font-weight:700; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
+    .btn-secondary{background:rgba(255,255,255,0.04); color:var(--white); border:1px solid rgba(255,255,255,0.08);}
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="ambient-lines"></div>
+  <div class="watermark-logo" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M55 24 L95 74 L55 124 L95 174" stroke="#6a8090" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M145 24 L105 74 L145 124 L105 174" stroke="#ff8c40" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="95" y1="74" x2="105" y2="74" stroke="#ff6a1a" stroke-width="6" opacity="0.9"/>
+      <line x1="55" y1="124" x2="145" y2="124" stroke="#6a8090" stroke-width="6" opacity="0.75"/>
+      <circle cx="100" cy="98" r="12" fill="#ff6a1a"/>
+    </svg>
+  </div>
+  <div class="card">
+    <div class="eyebrow">Inquiry Received</div>
+    <h1>Thank You.</h1>
+    <p>Your message has been submitted successfully. DiHelix has received your inquiry and will review it as soon as possible.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="index.html">Return Home</a>
+      <a class="btn btn-secondary" href="index.html#products">View Catalog</a>
+    </div>
+  </div>
+</body>
+</html>
